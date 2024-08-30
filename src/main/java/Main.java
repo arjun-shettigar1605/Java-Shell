@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
@@ -10,8 +11,6 @@ public class Main {
             String input = scanner.nextLine();
             if(input.equals("exit 0"))
                 break;
-            // if(input.matches(""))
-            //     flag=false;
             else if(input.startsWith("echo"))
                 System.out.println(input.substring(5));
             else if(input.startsWith("type"))
@@ -26,7 +25,23 @@ public class Main {
                 }
                 else
                 {
-                    System.out.println(input.substring(5)+" not found");
+                    String pathEnv=System.getenv("PATH");
+                    String []paths=pathEnv.split(":");
+                    boolean flag=false;
+                    for(String path: paths)
+                    {
+                        File file=new File(path, input.substring(5));
+                        if(file.exists() && file.canExecute())
+                        {
+                            System.out.println(input.substring(5)+ " is "+file.getAbsolutePath());
+                            flag=true;
+                            break;
+                        }
+                    }
+                    if(!flag)
+                    {
+                        System.out.println(input.substring(5)+ ": not found");
+                    }
                 }
             }
             else
