@@ -12,9 +12,18 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
             if(input.equals("exit 0"))
+            {
                 break;
+            }
             else if(input.startsWith("echo"))
+            {
                 System.out.println(input.substring(5));
+            }
+            else if(input.startsWith("pwd"))
+            {
+                System.out.println(System.getProperty("user.dir"));
+                break;
+            }
             else if(input.startsWith("type"))
             {
                 if(input.substring(5).equals("echo") || input.substring(5).equals("type") || input.substring(5).equals("exit")|| input.substring(5).equals("pwd"))
@@ -60,11 +69,6 @@ public class Main {
                     Process p = Runtime.getRuntime().exec(fullPath.split(" "));
                     p.getInputStream().transferTo(System.out);
                 }
-            }
-            else if(input.startsWith("pwd"))
-            {
-                System.out.println(System.getProperty("user.dir"));
-                break;
             }
             else
             {
