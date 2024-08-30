@@ -17,7 +17,7 @@ public class Main {
                 System.out.println(input.substring(5));
             else if(input.startsWith("type"))
             {
-                if(input.substring(5).equals("echo") || input.substring(5).equals("type") || input.substring(5).equals("exit"))
+                if(input.substring(5).equals("echo") || input.substring(5).equals("type") || input.substring(5).equals("exit")|| input.substring(5).equals("pwd"))
                 {
                     System.out.println(input.substring(5)+" is a shell builtin");
                 }
@@ -52,7 +52,7 @@ public class Main {
                 String path = getPath(command);
                 if (path == null) 
                 {
-                    System.out.printf("%s: command not found%n", command);
+                    System.out.println(command+": command not found");
                 } 
                 else 
                 {
@@ -60,6 +60,11 @@ public class Main {
                     Process p = Runtime.getRuntime().exec(fullPath.split(" "));
                     p.getInputStream().transferTo(System.out);
                 }
+            }
+            else if(input.startsWith(pwd))
+            {
+                System.out.println(System.getProperty("user.dir"));
+                break;
             }
             else
             {
