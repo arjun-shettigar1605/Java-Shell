@@ -37,7 +37,7 @@ public class Main {
                             System.out.println(input.substring(5)+ " is "+file.getAbsolutePath());
                             flag=true;
                             ProcessBuilder processBuilder = new ProcessBuilder();
-                            processBuilder.command(file.getAbsolutePath(), commandArgs);
+                            processBuilder.input.substring(5)(file.getAbsolutePath(), commandArgs);
                             Process process = processBuilder.start();
                             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                             String line;
