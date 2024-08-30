@@ -22,7 +22,7 @@ public class Main {
             else if(input.startsWith("pwd"))
             {
                 System.out.println(System.getProperty("user.dir"));
-                break;
+                
             }
             else if(input.startsWith("type"))
             {
