@@ -11,10 +11,6 @@ public class Main {
             System.out.print("$ ");
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
-            String inputsplit[]=input.split(" ");
-            String command=inputsplit[0];
-            String[] commandArgs = new String[inputsplit.length - 1];
-            System.arraycopy(inputsplit, 1, commandArgs, 0, commandArgs.length);
             if(input.equals("exit 0"))
                 break;
             else if(input.startsWith("echo"))
@@ -41,15 +37,6 @@ public class Main {
                         {
                             System.out.println(input.substring(5)+ " is "+file.getAbsolutePath());
                             flag=true;
-                            ProcessBuilder processBuilder = new ProcessBuilder();
-                            processBuilder.command(file.getAbsolutePath(), commandArgs);
-                            Process process = processBuilder.start();
-                            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                            String line;
-                            while ((line = reader.readLine()) != null) 
-                            {
-                                System.out.println(line);
-                            }
                             break;
                         }
                     }
@@ -59,10 +46,21 @@ public class Main {
                     }
                 }
             }
-            // else if()
-            // {
-                
-            // }
+            else if(!input.equals(""))
+            {
+                String command = input.split(" ")[0];
+                String path = getPath(command);
+                if (path == null) 
+                {
+                    System.out.printf("%s: command not found%n", command);
+                } 
+                else 
+                {
+                    String fullPath = path + input.substring(command.length());
+                    Process p = Runtime.getRuntime().exec(fullPath.split(" "));
+                    p.getInputStream().transferTo(System.out);
+                }
+            }
             else
             {
                 System.out.println(input+ ": command not found");
