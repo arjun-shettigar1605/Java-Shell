@@ -1,5 +1,6 @@
 import java.io.File;
 import java.util.Scanner;
+import java.nio.file.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -35,6 +36,15 @@ public class Main {
                         {
                             System.out.println(input.substring(5)+ " is "+file.getAbsolutePath());
                             flag=true;
+                            ProcessBuilder processBuilder = new ProcessBuilder();
+                            processBuilder.command(file.getAbsolutePath(), commandArgs);
+                            Process process = processBuilder.start();
+                            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                            String line;
+                            while ((line = reader.readLine()) != null) 
+                            {
+                                System.out.println(line);
+                            }
                             break;
                         }
                     }
@@ -43,6 +53,10 @@ public class Main {
                         System.out.println(input.substring(5)+ ": not found");
                     }
                 }
+            }
+            else if()
+            {
+                
             }
             else
             {
