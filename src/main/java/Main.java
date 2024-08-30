@@ -11,7 +11,7 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
             String inputsplit[]=input.split(" ");
-            int command=inputsplit[0];
+            String command=inputsplit[0];
             if(input.equals("exit 0"))
                 break;
             else if(input.startsWith("echo"))
