@@ -67,4 +67,12 @@ public class Main {
             }
         }
     }
+    private static String getPath(String command) 
+    {
+        for (String path : System.getenv("PATH").split(":")) {
+          Path fullPath = Path.of(path, command);
+          if (Files.isRegularFile(fullPath)) {
+            return fullPath.toString();
+          }
+        }
 }
