@@ -13,6 +13,8 @@ public class Main {
             String input = scanner.nextLine();
             String inputsplit[]=input.split(" ");
             String command=inputsplit[0];
+            String[] commandArgs = new String[parts.length - 1];
+            System.arraycopy(parts, 1, commandArgs, 0, commandArgs.length);
             if(input.equals("exit 0"))
                 break;
             else if(input.startsWith("echo"))
