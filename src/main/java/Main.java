@@ -61,7 +61,7 @@ public class Main {
                     p.getInputStream().transferTo(System.out);
                 }
             }
-            else if(input.startsWith(pwd))
+            else if(input.startsWith("pwd"))
             {
                 System.out.println(System.getProperty("user.dir"));
                 break;
