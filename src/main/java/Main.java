@@ -10,6 +10,8 @@ public class Main {
             System.out.print("$ ");
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
+            String inputsplit[]=input.split(" ");
+            int command=inputsplit[0];
             if(input.equals("exit 0"))
                 break;
             else if(input.startsWith("echo"))
@@ -37,7 +39,7 @@ public class Main {
                             System.out.println(input.substring(5)+ " is "+file.getAbsolutePath());
                             flag=true;
                             ProcessBuilder processBuilder = new ProcessBuilder();
-                            processBuilder.input.substring(5)(file.getAbsolutePath(), commandArgs);
+                            processBuilder.command(file.getAbsolutePath(), commandArgs);
                             Process process = processBuilder.start();
                             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                             String line;
