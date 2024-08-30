@@ -7,7 +7,7 @@ public class Main {
             System.out.print("$ ");
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
-            if(input.equals("exit 0"))
+            if(input.equals("exit 0") || input.matches(""))
                 break;
             if(input.startsWith("echo"))
                 System.out.println(input.substring(5));
