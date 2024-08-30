@@ -10,11 +10,11 @@ public class Main {
             String input = scanner.nextLine();
             if(input.equals("exit 0"))
                 break;
-            if(input.matches(""))
-                flag=false;
-            if(input.startsWith("echo"))
+            // if(input.matches(""))
+            //     flag=false;
+            else if(input.startsWith("echo"))
                 System.out.println(input.substring(5));
-            if(input.startsWith("type"))
+            else if(input.startsWith("type"))
             {
                 if(input.substring(5).equals("echo") || input.substring(5).equals("type") || input.substring(5).equals("exit"))
                 {
@@ -28,6 +28,10 @@ public class Main {
                 {
                     System.out.println(input.substring(5)+" not found");
                 }
+            }
+            else
+            {
+                System.out.println(input+ ": command not found");
             }
         }
     }
