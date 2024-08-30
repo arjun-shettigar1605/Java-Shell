@@ -54,10 +54,10 @@ public class Main {
                     }
                 }
             }
-            else if()
-            {
+            // else if()
+            // {
                 
-            }
+            // }
             else
             {
                 System.out.println(input+ ": command not found");
