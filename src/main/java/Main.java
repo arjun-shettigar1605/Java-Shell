@@ -2,7 +2,6 @@ import java.io.File;
 import java.util.*;
 // import java.nio.file.*;
 import java.io.*;
-import java.util.Set;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -27,6 +26,10 @@ public class Main {
             {
                 System.out.println(System.getProperty("user.dir"));
                 
+            }
+            else if(input.equals("pwd"))
+            {
+                System.out.println(cwd);
             }
             else if(input.startsWith("cd"))
             {
