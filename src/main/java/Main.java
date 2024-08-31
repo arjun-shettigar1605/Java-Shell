@@ -1,87 +1,70 @@
-import java.io.File;
-// import java.util.*;
-// import java.nio.file.*;
-import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Scanner;
+import java.util.Set;
+public class Main 
+{
+    public static void main(String[] args) throws Exception 
+    {
+        Set<String> commands = Set.of("cd", "echo", "exit", "pwd", "type");
+        Scanner scanner = new Scanner(System.in);
+        String cwd = Path.of("").toAbsolutePath().toString();
 
-public class Main {
-    public static void main(String[] args) throws Exception {
-        // boolean flag=true;
-        String cwd=Path.of("").toAbsolutePath().toString();
-        while(true)
+        while (true) 
         {
             System.out.print("$ ");
-            Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
-            if(input.equals("exit 0"))
+            if (input.equals("exit 0")) 
             {
-                break;
-            }
-            else if(input.startsWith("echo"))
+                System.exit(0);
+            } 
+            else if (input.startsWith("echo ")) 
             {
                 System.out.println(input.substring(5));
-            }
-            else if(input.startsWith("pwd"))
+            } 
+            else if (input.startsWith("type ")) 
             {
-                System.out.println(System.getProperty("user.dir"));
-                
-            }
-            else if(input.equals("pwd"))
+                String arg = input.substring(5);
+                if (commands.contains(arg)) 
+                {
+                    System.out.printf("%s is a shell builtin%n", arg);
+                } 
+                else 
+                {
+                    String path = getPath(arg);
+                    if (path == null) 
+                    {
+                        System.out.printf("%s: not found%n", arg);
+                    }
+                    else 
+                    {
+                        System.out.printf("%s is %s%n", arg, path);
+                    }
+                }
+            } 
+            else if (input.equals("pwd")) 
             {
                 System.out.println(cwd);
-            }
-            else if(input.startsWith("cd "))
+            } 
+            else if (input.startsWith("cd ")) 
             {
-                String dir=input.substring(3);
-                if(Files.isDirectory(Path.of(dir)))
+                String dir = input.substring(3);
+                if (Files.isDirectory(Path.of(dir))) 
                 {
-                    cwd=dir; 
-                }
-                else
+                    cwd = dir;
+                } 
+                else 
                 {
-                    System.out.println("cd: "+dir+": No such file or directory");
+                    System.out.printf("cd: %s: No such file or directory%n", dir);
                 }
-            }
-            else if(input.startsWith("type"))
-            {
-                if(input.substring(5).equals("echo") || input.substring(5).equals("type") || input.substring(5).equals("exit")|| input.substring(5).equals("pwd") ||input.substring(5).equals("cd"))
-                {
-                    System.out.println(input.substring(5)+" is a shell builtin");
-                }
-                else if(input.substring(5).equals("cat"))
-                {
-                    System.out.println(input.substring(5)+" is /bin/cat");
-                }
-                else
-                {
-                    String pathEnv=System.getenv("PATH");
-                    String []paths=pathEnv.split(":");
-                    boolean flag=false;
-                    for(String path: paths)
-                    {
-                        File file=new File(path, input.substring(5));
-                        if(file.exists() && file.canExecute())
-                        {
-                            System.out.println(input.substring(5)+ " is "+file.getAbsolutePath());
-                            flag=true;
-                            break;
-                        }
-                    }
-                    if(!flag)
-                    {
-                        System.out.println(input.substring(5)+ ": not found");
-                    }
-                }
-            }
-            else if(!input.equals(""))
+            } 
+            else 
             {
                 String command = input.split(" ")[0];
                 String path = getPath(command);
                 if (path == null) 
                 {
-                    System.out.println(command+": command not found");
+                    System.out.printf("%s: command not found%n", command);
                 } 
                 else 
                 {
@@ -90,22 +73,18 @@ public class Main {
                     p.getInputStream().transferTo(System.out);
                 }
             }
-            else
-            {
-                System.out.println(input+ ": command not found");
-            }
         }
     }
     private static String getPath(String command) 
     {
         for (String path : System.getenv("PATH").split(":")) 
         {
-          Path fullPath = Path.of(path, command);
-          if (Files.isRegularFile(fullPath)) 
-          {
-            return fullPath.toString();
-          }
+            Path fullPath = Path.of(path, command);
+            if (Files.isRegularFile(fullPath)) 
+            {
+                return fullPath.toString();
+            }
         }
         return null;
-  }
+    }
 }
