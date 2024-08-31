@@ -49,7 +49,12 @@ public class Main
             else if (input.startsWith("cd ")) 
             {
                 String dir = input.substring(3);
-                if(!dir.startsWith("/")) 
+
+                if (dir.equals("~")) 
+                {
+                    dir = System.getenv("HOME");
+                }
+                else if(!dir.startsWith("/")) 
                 {
                     dir = cwd + "/" + dir;
                 }
