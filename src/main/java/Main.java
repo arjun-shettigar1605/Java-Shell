@@ -35,10 +35,9 @@ public class Main {
             else if(input.startsWith("cd "))
             {
                 String dir=input.substring(3);
-                 Path newPath = Paths.get(cwd).resolve(dir).toAbsolutePath();
-                if(Files.isDirectory(newPath))
+                if(Files.isDirectory(Path.of(dir)))
                 {
-                    cwd=newPath.toString(); 
+                    cwd=dir; 
                 }
                 else
                 {
