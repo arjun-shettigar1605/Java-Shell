@@ -31,7 +31,7 @@ public class Main {
             {
                 System.out.println(cwd);
             }
-            else if(input.startsWith("cd"))
+            else if(input.startsWith("cd "))
             {
                 String dir=input.substring(3);
                 if(Files.isDirectory(Path.of(dir)))
