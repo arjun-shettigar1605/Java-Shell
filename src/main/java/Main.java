@@ -11,6 +11,7 @@ public class Main {
             System.out.print("$ ");
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
+            String cwd=Path.of("").toAbsolutePath().toString();
             if(input.equals("exit 0"))
             {
                 break;
@@ -24,9 +25,21 @@ public class Main {
                 System.out.println(System.getProperty("user.dir"));
                 
             }
+            else if(input.startsWith("cd"))
+            {
+                String dir=input.substring(3);
+                if(Files.isDirectory(Path.of(dir)))
+                {
+                    cwd=dir;
+                }
+                else
+                {
+                    System.out.println(dir+": No such file or directory");
+                }
+            }
             else if(input.startsWith("type"))
             {
-                if(input.substring(5).equals("echo") || input.substring(5).equals("type") || input.substring(5).equals("exit")|| input.substring(5).equals("pwd"))
+                if(input.substring(5).equals("echo") || input.substring(5).equals("type") || input.substring(5).equals("exit")|| input.substring(5).equals("pwd") ||input.substring(5).equals("cd"))
                 {
                     System.out.println(input.substring(5)+" is a shell builtin");
                 }
@@ -78,9 +91,11 @@ public class Main {
     }
     private static String getPath(String command) 
     {
-        for (String path : System.getenv("PATH").split(":")) {
+        for (String path : System.getenv("PATH").split(":")) 
+        {
           Path fullPath = Path.of(path, command);
-          if (Files.isRegularFile(fullPath)) {
+          if (Files.isRegularFile(fullPath)) 
+          {
             return fullPath.toString();
           }
         }
