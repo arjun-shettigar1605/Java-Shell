@@ -1,13 +1,35 @@
-# Java-Shell
-This Java shell program simulates a basic Unix-like shell. It supports fundamental shell commands and can execute external programs.
+[![progress-banner](https://backend.codecrafters.io/progress/shell/22f4b938-2ca9-464d-b49e-5e12d9d245ac)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
 
-Features
-  1. cd <directory>: Changes the current working directory to the specified path.
-  2. pwd: Prints the current working directory.
-  3. echo <text>: Outputs the provided text to the console.
-  4. type <command>: Displays whether a command is a shell built-in or finds its executable path if it is not.
-  5. exit: Exits the shell program.
+This is a starting point for Java solutions to the
+["Build Your Own Shell" Challenge](https://app.codecrafters.io/courses/shell/overview).
 
+In this challenge, you'll build your own POSIX compliant shell that's capable of
+interpreting shell commands, running external programs and builtin commands like
+cd, pwd, echo and more. Along the way, you'll learn about shell command parsing,
+REPLs, builtin commands, and more.
 
-Contributions:
-Feel free to fork the repository and contribute to the project. Pull requests are welcome :)
+**Note**: If you're viewing this repo on GitHub, head over to
+[codecrafters.io](https://codecrafters.io) to try the challenge.
+
+# Passing the first stage
+
+The entry point for your `shell` implementation is in `src/main/java/Main.java`.
+Study and uncomment the relevant code, and push your changes to pass the first
+stage:
+
+```sh
+git commit -am "pass 1st stage" # any msg
+git push origin master
+```
+
+Time to move on to the next stage!
+
+# Stage 2 & beyond
+
+Note: This section is for stages 2 and beyond.
+
+1. Ensure you have `java (21)` installed locally
+1. Run `./your_program.sh` to run your program, which is implemented in
+   `src/main/java/Main.java`.
+1. Commit your changes and run `git push origin master` to submit your solution
+   to CodeCrafters. Test output will be streamed to your terminal.
