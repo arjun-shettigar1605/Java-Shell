@@ -9,12 +9,12 @@ import java.nio.file.Paths;
 public class Main {
     public static void main(String[] args) throws Exception {
         // boolean flag=true;
+        String cwd=Path.of("").toAbsolutePath().toString();
         while(true)
         {
             System.out.print("$ ");
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
-            String cwd=Path.of("").toAbsolutePath().toString();
             if(input.equals("exit 0"))
             {
                 break;
