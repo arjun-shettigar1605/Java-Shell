@@ -40,7 +40,7 @@ public class Main {
                 }
                 else
                 {
-                    System.out.println(dir+": No such file or directory");
+                    System.out.println("cd: "+dir+": No such file or directory");
                 }
             }
             else if(input.startsWith("type"))
