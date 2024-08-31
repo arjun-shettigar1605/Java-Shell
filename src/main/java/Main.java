@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -34,9 +35,10 @@ public class Main {
             else if(input.startsWith("cd "))
             {
                 String dir=input.substring(3);
-                if(Files.isDirectory(Path.of(dir)))
+                 Path newPath = Paths.get(cwd).resolve(dir).toAbsolutePath();
+                if(Files.isDirectory(newPath))
                 {
-                    cwd=dir;
+                    cwd=newPath.toString(); 
                 }
                 else
                 {
